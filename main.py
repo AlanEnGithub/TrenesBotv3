@@ -17,10 +17,19 @@ import time
 
 ua = UserAgent()
 
+# Driver y opciones originales
 opts = Options()
 opts.add_argument("user-agent="+ua.random)
 driver = webdriver.Chrome(options=opts)
 actions = ActionChains(driver)
+
+#Para poder hacer deployment en heroku.
+# chrome_options = webdriver.ChromeOptions()
+# chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+# chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--disable-dev-shm-usage")
+# chrome_options.add_argument("--no-sandbox")
+# driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
 def busqueda():
     # idavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[2]/div[2]/div/label/span').click()
@@ -40,7 +49,7 @@ def busqueda():
     # time.sleep(2)
     # mdq.click()
     fechaida = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[1]/div[1]/a/span').click()
-    monthchange = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_ida"]/div[1]/div[2]').click()
+    # monthchange = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_ida"]/div[1]/div[2]').click()
     fechita = driver.find_element(By.XPATH, '//*[@id="cell17-fecha_ida"]').click()
     # fechavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[2]/div[1]/a/span').click()
     # vueltita = driver.find_element(By.XPATH,' //*[@id="cell30-fecha_vuelta"]').click()
