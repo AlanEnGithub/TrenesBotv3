@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from fake_useragent import UserAgent
+# from fake_useragent import UserAgent
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import requests
@@ -14,7 +14,7 @@ import os
 
 import time
 
-ua = UserAgent()
+# ua = UserAgent()
 
 # Driver y opciones originales
 # opts = Options()
