@@ -55,19 +55,28 @@ def busqueda():
 
 
 output = "Inicia el loop para no mandar 2 veces el mismo mensaje"
-interes = ["DOM 16","LUN 17","MAR 18", "MIE 19"]
-interes_vuelta = ["SAB 29","DOM 30"]
+interes = ["DOM 16 ENE","LUN 17 ENE","MAR 18 ENE", "MIE 19 ENE"]
+interes_vuelta = ["SAB 29 ENE","DOM 30 ENE"]
 
-def send_message(message,dia):
-    # if output != message:
+def send_message(message, dia):
+    if output != message:
         if dia in interes:
             print("Send Message")
             requests.post('https://api.telegram.org/bot5056598073:AAGhD-kiMHD-QdtQA7jb_LLZP9SNfKUzFvg/sendMessage',
                       data = {'chat_id' : '@trencitoboti', 'text' : message})
+            return message
         if dia in interes_vuelta:
             requests.post('https://api.telegram.org/bot5023431716:AAFgi7CxstJBXRmwgmiDMrZPb9Rr54AcF-A/sendMessage',
-                      data={'chat_id': '@lilbotivuelta', 'text': message})
+                      data = {'chat_id': '@lilbotivuelta', 'text': message})
+            return message
 
+
+def get_days(soup):
+    dias = soup.find_all("span", {"class": "dia_numero"})
+    calendario_ida = soup.find_all("section", {"class": "calendario ida"})
+    asientos_disponibles = soup.find_all("div", {"class": "disponibles"})
+    n = soup.find_all("p", {"class": "m-0 cantidad"})
+    return [dias, calendario_ida, asientos_disponibles, n]
 
 
 
@@ -90,13 +99,11 @@ while True:
 
 
     html = driver.page_source
-    soup = bs4.BeautifulSoup(html, "html.parser")
+    html_obj = bs4.BeautifulSoup(html, "html.parser")
 
     # Busca los dias disponibles
-    dias = soup.find_all("span", {"class": "dia_numero"})
-    calendario_ida = soup.find_all("section", {"class": "calendario ida"})
-    asientos_disponibles = soup.find_all("div", {"class": "disponibles"})
-    n = soup.find_all("p", {"class": "m-0 cantidad"})
+    [dias, calendario_ida, asientos_disponibles, n] = get_days(html_obj)
+
 
     ndisp = []
     en_stock = []
@@ -115,15 +122,11 @@ while True:
 
     if bool(en_stock) == True:
         for p, num in zip(en_stock, ndisp):
-            send_message("Para el dia: " + p + " hay: " + num + " disponibles",p)
+            output = send_message("Para el dia: " + p + " hay: " + num + " disponibles", p)
             print("Para el dia:", p, "hay:", num, "disponibles")
-
     else:
-        check = "nada"
-        print("NO HAY NADA MOSTRO")
-
-    # if send_message(message) != None:
-    #     output = send_message(message)
+        output = "NO HAY NADA MOSTRO"
+        print(output)
 
 
     time.sleep(10)
