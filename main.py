@@ -147,5 +147,5 @@ while True:
     idx += 1
 
 
-    time.sleep(10)
+    time.sleep(2)
 
