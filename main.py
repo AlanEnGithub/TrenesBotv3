@@ -29,6 +29,7 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+actions = ActionChains(driver)
 
 def busqueda():
     idavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[2]/div[2]/div/label/span').click()
