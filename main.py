@@ -76,6 +76,9 @@ def send_message(message, dia):
                       data = {'chat_id': '@lilbotivuelta', 'text': message})
             return message
 
+def send_status():
+    requests.post('https://api.telegram.org/bot5056598073:AAGhD-kiMHD-QdtQA7jb_LLZP9SNfKUzFvg/sendMessage',
+                  data={'chat_id': '@trencitobotistatus', 'text': "BOT STATUS: ON"})
 
 def get_days(soup):
     dias = soup.find_all("span", {"class": "dia_numero"})
@@ -93,9 +96,14 @@ def get_days(soup):
             # print("Mensaje ya enviado")
 
 
+idx = 0
 
 
 while True:
+
+    if idx == 10:
+        send_status()
+        idx = 0
 
     driver.get("https://webventas.sofse.gob.ar/")
     time.sleep(2)
@@ -133,6 +141,8 @@ while True:
     else:
         output = "NO HAY NADA MOSTRO"
         print(output)
+
+    idx += 1
 
 
     time.sleep(10)
