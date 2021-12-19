@@ -65,7 +65,7 @@ interes = ["DOM 16 ENE","LUN 17 ENE","MAR 18 ENE", "MIE 19 ENE"]
 interes_vuelta = ["SAB 29 ENE","DOM 30 ENE"]
 
 def send_message(message, dia):
-    if output != message:
+    if output != message and output is not None:
         if dia in interes:
             print("Send Message")
             requests.post('https://api.telegram.org/bot5056598073:AAGhD-kiMHD-QdtQA7jb_LLZP9SNfKUzFvg/sendMessage',
