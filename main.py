@@ -6,8 +6,6 @@ from selenium.webdriver.common.by import By
 from fake_useragent import UserAgent
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-import pywhatkit as pwt
-import pyautogui as pygui
 import requests
 
 # telegram_api_ key = "5056598073:AAGhD-kiMHD-QdtQA7jb_LLZP9SNfKUzFvg"
@@ -18,27 +16,28 @@ import time
 ua = UserAgent()
 
 # Driver y opciones originales
-opts = Options()
-opts.add_argument("user-agent="+ua.random)
-driver = webdriver.Chrome(options=opts)
-actions = ActionChains(driver)
+# opts = Options()
+# opts.add_argument("user-agent="+ua.random)
+# driver = webdriver.Chrome(options=opts)
+# actions = ActionChains(driver)
 
 #Para poder hacer deployment en heroku.
-# chrome_options = webdriver.ChromeOptions()
-# chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-# chrome_options.add_argument("--headless")
-# chrome_options.add_argument("--disable-dev-shm-usage")
-# chrome_options.add_argument("--no-sandbox")
-# driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
 def busqueda():
-    # idavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[2]/div[2]/div/label/span').click()
+    idavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[2]/div[2]/div/label/span').click()
     origen = driver.find_element(By.XPATH,'//*[@id="form_busqueda"]/div/div[3]/div[1]/div[1]/div[1]')
     origen.click()
     bsas = driver.find_element(By.XPATH,'//*[@id="form_busqueda"]/div/div[3]/div[1]/div[1]/div[2]/div/div[14]')
     bsas.click()
     destino = driver.find_element(By.XPATH,'//*[@id="form_busqueda"]/div/div[3]/div[2]/div[1]/div[1]')
     destino.click()
+    time.sleep(1)
     actions.send_keys('Mar del plata')
     actions.perform()
     time.sleep(2)
@@ -49,16 +48,26 @@ def busqueda():
     # time.sleep(2)
     # mdq.click()
     fechaida = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[1]/div[1]/a/span').click()
-    monthchange = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_ida"]/div[1]/div[2]').click()
+    # monthchange = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_ida"]/div[1]/div[2]').click()
     fechita = driver.find_element(By.XPATH, '//*[@id="cell17-fecha_ida"]').click()
-    # fechavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[2]/div[1]/a/span').click()
-    # vueltita = driver.find_element(By.XPATH,' //*[@id="cell30-fecha_vuelta"]').click()
+    fechavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[2]/div[1]/a/span').click()
+    vueltita = driver.find_element(By.XPATH,' //*[@id="cell30-fecha_vuelta"]').click()
     buscar = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[7]/div/button').click()
 
+
+output = "Inicia el loop para no mandar 2 veces el mismo mensaje"
+
 def send_message(message):
-    print("Send Message")
-    requests.post('https://api.telegram.org/bot5056598073:AAGhD-kiMHD-QdtQA7jb_LLZP9SNfKUzFvg/sendMessage',
-                  data = {'chat_id' : '@trencitoboti', 'text' : message})
+    # if output != message:
+        if "JUE 20" not in message:
+            print("Send Message")
+            requests.post('https://api.telegram.org/bot5056598073:AAGhD-kiMHD-QdtQA7jb_LLZP9SNfKUzFvg/sendMessage',
+                      data = {'chat_id' : '@trencitoboti', 'text' : message})
+            # output2 = message
+            # return output2
+        # else:
+            # print("Mensaje ya enviado")
+
 
 
 
@@ -102,6 +111,9 @@ while True:
     else:
         check = "nada"
         print("NO HAY NADA MOSTRO")
+
+    # if send_message(message) != None:
+    #     output = send_message(message)
 
 
     time.sleep(10)
