@@ -101,9 +101,11 @@ idx = 0
 
 while True:
 
-    if idx == 10:
-        send_status()
-        idx = 0
+    send_status()
+
+    # if idx == 10:
+    #     send_status()
+    #     idx = 0
 
     driver.get("https://webventas.sofse.gob.ar/")
     time.sleep(2)
