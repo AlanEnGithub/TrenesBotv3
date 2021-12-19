@@ -17,16 +17,16 @@ import time
 ua = UserAgent()
 
 # Driver y opciones originales
-# opts = Options()
-# opts.add_argument("user-agent="+ua.random)
-# driver = webdriver.Chrome(options=opts)
-# actions = ActionChains(driver)
+opts = Options()
+opts.add_argument("user-agent="+ua.random)
+driver = webdriver.Chrome(options=opts)
+actions = ActionChains(driver)
 
 #Para poder hacer deployment en heroku.
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-chrome_options.add_argument("--disable-dev-shm-usage")
-driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+# chrome_options = webdriver.ChromeOptions()
+# chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+# chrome_options.add_argument("--disable-dev-shm-usage")
+# driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
 def busqueda():
     idavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[2]/div[2]/div/label/span').click()
@@ -47,7 +47,7 @@ def busqueda():
     # time.sleep(2)
     # mdq.click()
     fechaida = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[1]/div[1]/a/span').click()
-    # monthchange = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_ida"]/div[1]/div[2]').click()
+    monthchange = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_ida"]/div[1]/div[2]').click()
     fechita = driver.find_element(By.XPATH, '//*[@id="cell17-fecha_ida"]').click()
     fechavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[2]/div[1]/a/span').click()
     vueltita = driver.find_element(By.XPATH,' //*[@id="cell30-fecha_vuelta"]').click()
@@ -55,13 +55,23 @@ def busqueda():
 
 
 output = "Inicia el loop para no mandar 2 veces el mismo mensaje"
+interes = ["DOM 16","LUN 17","MAR 18", "MIE 19"]
+interes_vuelta = ["SAB 29","DOM 30"]
 
-def send_message(message):
+def send_message(message,dia):
     # if output != message:
-        if "JUE 20" not in message:
+        if dia in interes:
             print("Send Message")
             requests.post('https://api.telegram.org/bot5056598073:AAGhD-kiMHD-QdtQA7jb_LLZP9SNfKUzFvg/sendMessage',
                       data = {'chat_id' : '@trencitoboti', 'text' : message})
+        if dia in interes_vuelta:
+            requests.post('https://api.telegram.org/bot5023431716:AAFgi7CxstJBXRmwgmiDMrZPb9Rr54AcF-A/sendMessage',
+                      data={'chat_id': '@lilbotivuelta', 'text': message})
+
+
+
+
+
             # output2 = message
             # return output2
         # else:
@@ -105,8 +115,9 @@ while True:
 
     if bool(en_stock) == True:
         for p, num in zip(en_stock, ndisp):
-            send_message("Para el dia: " + p + " hay: " + num + " disponibles")
+            send_message("Para el dia: " + p + " hay: " + num + " disponibles",p)
             print("Para el dia:", p, "hay:", num, "disponibles")
+
     else:
         check = "nada"
         print("NO HAY NADA MOSTRO")
