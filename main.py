@@ -66,11 +66,11 @@ interes_vuelta = ["SAB 29 ENE","DOM 30 ENE"]
 
 def send_message(message, dia):
     if output != message and output is not None:
-        if dia in interes:
-            print("Send Message")
-            requests.post('https://api.telegram.org/bot5056598073:AAGhD-kiMHD-QdtQA7jb_LLZP9SNfKUzFvg/sendMessage',
-                      data = {'chat_id' : '@trencitoboti', 'text' : message})
-            return message
+        # if dia in interes:
+        #     print("Send Message")
+        #     requests.post('https://api.telegram.org/bot5056598073:AAGhD-kiMHD-QdtQA7jb_LLZP9SNfKUzFvg/sendMessage',
+        #               data = {'chat_id' : '@trencitoboti', 'text' : message})
+        #     return message
         if dia in interes_vuelta:
             requests.post('https://api.telegram.org/bot5023431716:AAFgi7CxstJBXRmwgmiDMrZPb9Rr54AcF-A/sendMessage',
                       data = {'chat_id': '@lilbotivuelta', 'text': message})
