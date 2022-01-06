@@ -72,10 +72,10 @@ def send_message(message, dia):
             requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
                       data = {'chat_id' : '@trencitoboti', 'text' : message})
             return message
-        if dia in interes_vuelta:
-            requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
-                      data = {'chat_id': '@trencitoboti', 'text': message})
-            return message
+        # if dia in interes_vuelta:
+        #     requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
+        #               data = {'chat_id': '@trencitoboti', 'text': message})
+        #     return message
 
 def send_status():
     requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
