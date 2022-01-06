@@ -60,7 +60,6 @@ def busqueda():
     fechavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[2]/div[1]/a/span').click()
     vueltita = driver.find_element(By.XPATH,' //*[@id="cell22-fecha_vuelta"]').click()
     buscar = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[7]/div/button').click()
-    driver.find_element(By.
 
 output = "Inicia el loop para no mandar 2 veces el mismo mensaje"
 interes = ["SAB 15 ENE","DOM 16 ENE","LUN 17 ENE"]
