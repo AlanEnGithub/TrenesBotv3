@@ -28,14 +28,14 @@ chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--window-size=1920,1080")
+chrome_options.add_argument("--window-size=1000,1080")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
 actions = ActionChains(driver)
 
 def busqueda():
     idavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[2]/div[2]/div/label/span').click()
-    time.sleep(0.5)
+    # time.sleep(0.5)
     origen = driver.find_element(By.XPATH,'//*[@id="form_busqueda"]/div/div[3]/div[1]/div[1]/div[1]')
     origen.click()
     bsas = driver.find_element(By.XPATH,'//*[@id="form_busqueda"]/div/div[3]/div[1]/div[1]/div[2]/div/div[14]')
@@ -56,11 +56,11 @@ def busqueda():
     time.sleep(2)
     # monthchange = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_ida"]/div[1]/div[2]').click()
     fechita = driver.find_element(By.XPATH, '//*[@id="cell17-fecha_ida"]').click()
-    time.sleep(0.5)
+    # time.sleep(0.5)
     fechavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[2]/div[1]/a/span').click()
     vueltita = driver.find_element(By.XPATH,' //*[@id="cell22-fecha_vuelta"]').click()
     buscar = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[7]/div/button').click()
-
+    driver.find_element(By.
 
 output = "Inicia el loop para no mandar 2 veces el mismo mensaje"
 interes = ["SAB 15 ENE","DOM 16 ENE","LUN 17 ENE"]
