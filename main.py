@@ -14,7 +14,7 @@ import os
 
 import time
 
-# ua = UserAgent()
+ua = UserAgent()
 
 # Driver y opciones originales
 # opts = Options()
@@ -23,13 +23,13 @@ import time
 # actions = ActionChains(driver)
 
 #Para poder hacer deployment en heroku.
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--window-size=1920,1080")
-driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+# chrome_options = webdriver.ChromeOptions()
+# chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+# chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--disable-dev-shm-usage")
+# chrome_options.add_argument("--no-sandbox")
+# chrome_options.add_argument("--window-size=1920,1080")
+# driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
 actions = ActionChains(driver)
 
@@ -53,27 +53,27 @@ def busqueda():
     # mdq.click()
     fechaida = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[1]/div[1]/a/span').click()
     time.sleep(2)
-    monthchange = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_ida"]/div[1]/div[2]').click()
+    # monthchange = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_ida"]/div[1]/div[2]').click()
     fechita = driver.find_element(By.XPATH, '//*[@id="cell17-fecha_ida"]').click()
     fechavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[2]/div[1]/a/span').click()
-    vueltita = driver.find_element(By.XPATH,' //*[@id="cell30-fecha_vuelta"]').click()
+    vueltita = driver.find_element(By.XPATH,' //*[@id="cell22-fecha_vuelta"]').click()
     buscar = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[7]/div/button').click()
 
 
 output = "Inicia el loop para no mandar 2 veces el mismo mensaje"
-interes = ["DOM 16 ENE","LUN 17 ENE","MAR 18 ENE", "MIE 19 ENE"]
-interes_vuelta = ["SAB 29 ENE","DOM 30 ENE"]
+interes = ["SAB 15 ENE","DOM 16 ENE","LUN 17 ENE"]
+interes_vuelta = ["SAB 22 ENE","DOM 23 ENE"]
 
 def send_message(message, dia):
     if output != message and output is not None:
-        # if dia in interes:
-        #     print("Send Message")
-        #     requests.post('https://api.telegram.org/bot5056598073:AAGhD-kiMHD-QdtQA7jb_LLZP9SNfKUzFvg/sendMessage',
-        #               data = {'chat_id' : '@trencitoboti', 'text' : message})
-        #     return message
+        if dia in interes:
+            print("Send Message")
+            requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
+                      data = {'chat_id' : '@trencitoboti', 'text' : message})
+            return message
         if dia in interes_vuelta:
-            requests.post('https://api.telegram.org/bot5023431716:AAFgi7CxstJBXRmwgmiDMrZPb9Rr54AcF-A/sendMessage',
-                      data = {'chat_id': '@lilbotivuelta', 'text': message})
+            requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
+                      data = {'chat_id': '@trencitoboti', 'text': message})
             return message
 
 def send_status():
