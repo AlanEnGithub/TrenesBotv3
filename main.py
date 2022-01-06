@@ -35,6 +35,7 @@ actions = ActionChains(driver)
 
 def busqueda():
     idavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[2]/div[2]/div/label/span').click()
+    time.sleep(1)
     origen = driver.find_element(By.XPATH,'//*[@id="form_busqueda"]/div/div[3]/div[1]/div[1]/div[1]')
     origen.click()
     bsas = driver.find_element(By.XPATH,'//*[@id="form_busqueda"]/div/div[3]/div[1]/div[1]/div[2]/div/div[14]')
