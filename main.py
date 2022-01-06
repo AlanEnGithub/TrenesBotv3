@@ -22,7 +22,7 @@ import time
 # driver = webdriver.Chrome(options=opts)
 # actions = ActionChains(driver)
 
-#Para poder hacer deployment en heroku.
+#Para poder hacer deployment en heroku
 chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 chrome_options.add_argument("--headless")
@@ -62,11 +62,11 @@ def busqueda():
     buscar = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[7]/div/button').click()
 
 output = "Inicia el loop para no mandar 2 veces el mismo mensaje"
-interes = ["SAB 15 ENE","DOM 16 ENE","LUN 17 ENE"]
-interes_vuelta = ["SAB 22 ENE","DOM 23 ENE"]
+interes = ["SAB 15 ENE", "DOM 16 ENE", "LUN 17 ENE"]
+interes_vuelta = ["SAB 22 ENE", "DOM 23 ENE"]
 
 def send_message(message, dia):
-    if output != message and output is not None:
+    # if output != message and output is not None:
         if dia in interes:
             print("Send Message")
             requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
