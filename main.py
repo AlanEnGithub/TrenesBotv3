@@ -78,7 +78,7 @@ def send_message(message, dia):
             return message
 
 def send_status():
-    requests.post('https://api.telegram.org/bot5056598073:AAGhD-kiMHD-QdtQA7jb_LLZP9SNfKUzFvg/sendMessage',
+    requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
                   data={'chat_id': '@trencitobotistatus', 'text': "BOT STATUS: ON"})
 
 def get_days(soup):
