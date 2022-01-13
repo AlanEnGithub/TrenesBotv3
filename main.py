@@ -67,7 +67,7 @@ def busqueda():
 
 output = "Inicia el loop para no mandar 2 veces el mismo mensaje"
 interes = ["MIE 19 ENE", "JUE 20 ENE"]
-interes_vuelta = ["DOM 30 ENE"]
+interes_vuelta = ["DOM 30 ENE", "MAR 1 MAR"]
 
 def send_message(message, dia):
     # if output != message and output is not None:
@@ -76,10 +76,10 @@ def send_message(message, dia):
     #         requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
     #                   data = {'chat_id' : '@trencitoboti', 'text' : message})
     #         return message
-    #     if dia in interes_vuelta:
-    #         requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
-    #                   data = {'chat_id': '@pujolboti', 'text': message})
-    #         return message
+        if dia in interes_vuelta:
+            requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
+                      data = {'chat_id': '@pujolboti', 'text': message})
+            return message
 
 def send_status():
     requests.post('https://api.telegram.org/bot5056598073:AAHyhBvoMRztbzNyLldsDxbNzdqh8iKG8dA/sendMessage',
