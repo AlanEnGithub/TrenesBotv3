@@ -67,7 +67,7 @@ def busqueda():
 
 output = "Inicia el loop para no mandar 2 veces el mismo mensaje"
 interes = ["MIE 19 ENE", "JUE 20 ENE"]
-interes_vuelta = ["DOM 30 ENE", "MAR 1 MAR"]
+interes_vuelta = ["VIE 25 FEB", "SAB 26 FEB"]
 
 def send_message(message, dia):
     # if output != message and output is not None:
