@@ -34,7 +34,7 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), o
 actions = ActionChains(driver)
 
 def busqueda():
-    idavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[2]/div[2]/div/label/span').click()
+    # idavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[2]/div[2]/div/label/span').click()
     # time.sleep(0.5)
     origen = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[3]/div[1]/div[1]/div[1]')
     origen.click()
@@ -57,12 +57,12 @@ def busqueda():
     monthchange = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_ida"]/div[1]/div[2]').click()
     fechita = driver.find_element(By.XPATH, '//*[@id="cell26-fecha_ida"]').click()
     # time.sleep(0.5)
-    fechavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[2]/div[1]/a/span').click()
-    time.sleep(0.5)
-    monthchangevuelta = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_vuelta"]/div[1]/div[2]').click()
+    # fechavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[2]/div[1]/a/span').click()
+    # time.sleep(0.5)
+    # monthchangevuelta = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_vuelta"]/div[1]/div[2]').click()
     # monthchangevuelta = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_vuelta"]/div[1]/div[2]').click()
     time.sleep(0.5)
-    vueltita = driver.find_element(By.XPATH, ' //*[@id="cell1-fecha_vuelta"]').click()
+    # vueltita = driver.find_element(By.XPATH, ' //*[@id="cell1-fecha_vuelta"]').click()
     buscar = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[7]/div/button').click()
 
 output = "Inicia el loop para no mandar 2 veces el mismo mensaje"
