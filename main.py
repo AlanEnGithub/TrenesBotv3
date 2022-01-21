@@ -32,7 +32,7 @@ chrome_options.add_argument("--window-size=1000,1080")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
 actions = ActionChains(driver)
-
+#caca
 def busqueda():
     # idavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[2]/div[2]/div/label/span').click()
     # time.sleep(0.5)
