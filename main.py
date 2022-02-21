@@ -38,7 +38,7 @@ def busqueda():
     # time.sleep(0.5)
     origen = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[3]/div[1]/div[1]/div[1]')
     origen.click()
-    actions.send_keys('Mar del plata')
+    actions.send_keys('buenos aires')
     actions.perform()
     time.sleep(2)
     actions.send_keys(Keys.ENTER)
@@ -48,7 +48,7 @@ def busqueda():
     destino = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[3]/div[2]/div[1]/div[1]')
     destino.click()
     time.sleep(1)
-    actions.send_keys('buenos aires')
+    actions.send_keys('pinamar')
     actions.perform()
     time.sleep(2)
     actions.send_keys(Keys.ENTER)
@@ -60,7 +60,7 @@ def busqueda():
     fechaida = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[1]/div[1]/a/span').click()
     time.sleep(2)
     # monthchange = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_ida"]/div[1]/div[2]').click()
-    fechita = driver.find_element(By.XPATH, '//*[@id="cell28-fecha_ida"]').click()
+    fechita = driver.find_element(By.XPATH, '//*[@id="cell26-fecha_ida"]').click()
     # time.sleep(0.5)
     # fechavuelta = driver.find_element(By.XPATH, '//*[@id="form_busqueda"]/div/div[4]/div[2]/div[1]/a/span').click()
     # time.sleep(0.5)
@@ -72,8 +72,8 @@ def busqueda():
 
 
 output = "Inicia el loop para no mandar 2 veces el mismo mensaje"
-interes = ["SAB 29 ENE", "DOM 30 ENE"]
-interes_vuelta = ["VIE 25 FEB", "SAB 26 FEB"]
+interes = ["SAB 26 FEB"]
+# interes_vuelta = ["VIE 25 FEB", "SAB 26 FEB"]
 
 def send_message(message, dia):
     # if output != message and output is not None:
