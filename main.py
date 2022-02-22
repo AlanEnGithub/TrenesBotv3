@@ -67,7 +67,7 @@ def busqueda():
     # monthchangevuelta = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_vuelta"]/div[1]/div[2]').click()
     # monthchangevuelta = driver.find_element(By.XPATH, '//*[@id="datepicker-calendar-fecha_vuelta"]/div[1]/div[2]').click()
     time.sleep(0.5)
-    pax_menu = driver.find_element(By.XPATH, '////*[@id="adulto"]').click()
+    pax_menu = driver.find_element(By.XPATH, '//*[@id="adulto"]').click()
     time.sleep(0.1)
     pax_cant = driver.find_element(By.XPATH, '//*[@id="adulto"]/option[2]').click()
     # vueltita = driver.find_element(By.XPATH, ' //*[@id="cell1-fecha_vuelta"]').click()
